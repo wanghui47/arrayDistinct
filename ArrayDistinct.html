@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>数组去重</title>
+		<style type="text/css">
+			#arraya,
+			#result {
+				width: 800px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<label for="arraya">Please input a array:</label>
+		<input type="text" id="arraya" />
+		<div>For example:</div>
+		<div>1. name, age, money, name, age, money</div>
+		<div>2. {name: '1', age: '12', money: '58'},{name: '1', age: '12', money: '58'}</div>
+		<div>3. {name: {sex: '1'},age: '12', money: '58'},{name: {sex: '1'},age: '12',money: '58'}</div>
+		<div>4. {name: {sex: {sex: '1'}},age: '12', money: '58'},{name: {sex: {sex: '1'}},age: '12',money: '58'}</div>
+		<button id="distinct">click to remove the repeating element</button>
+		<br />
+		<label for="result">The array after remove the repeating element:</label>
+		<input type="text" id="result" />
+	</body>
+
+</html>
+<script type="text/javascript">
+	let distinct = document.getElementById("distinct");
+	distinct.onclick = function() {
+		let arrayValue = document.getElementById("arraya").value.replace(/\s/g, "").split(",");
+		let unique = {};
+		arrayValue.forEach(function(gpa) {
+			unique[JSON.stringify(gpa)] = gpa
+		});
+		document.getElementById("result").value = Object.keys(unique).map(function(u) {
+			return JSON.parse(u)
+		});
+	}
+</script>
